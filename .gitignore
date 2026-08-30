@@ -1,0 +1,19 @@
+# Fuentes descargadas (OFL). No se versionan: se bajan con los comandos
+# que están en tools/README.md
+tools/fonts/
+
+# Salidas de los generadores. Son entregables, no código.
+tools/*.pdf
+tools/*.png
+
+# Python (tools/ tiene dos scripts)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Ruido de sistema y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

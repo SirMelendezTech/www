@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="es" data-lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MelendezTech — Soporte de IT para negocios pequeños en Puerto Rico</title>
+<meta name="description" content="Redes, seguridad, Microsoft 365 y respaldos para negocios pequeños en Puerto Rico. Más de 15 años en infraestructura y ciberseguridad.">
+<link rel="canonical" href="https://melendeztech.com/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#16232E">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://melendeztech.com/">
+<meta property="og:site_name" content="MelendezTech">
+<meta property="og:title" content="MelendezTech — El departamento de IT que tu negocio no tiene">
+<meta property="og:description" content="Redes, seguridad, Microsoft 365 y respaldos para negocios pequeños en Puerto Rico.">
+<meta property="og:image" content="https://melendeztech.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pedro R. Meléndez — MelendezTech">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://melendeztech.com/og.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&family=Spectral:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#16232E;
+  --ink-deep:#0F1A22;
+  --slate:#5A6672;
+  --slate-lt:#8A949E;
+  --amber:#B4762A;
+  --amber-dk:#9A6220;
+  --amber-tint:#FBF3E7;
+  --hair:#DDE2E6;
+  --hair-dk:#2A3742;
+  --paper:#F7F8F9;
+  --white:#FFFFFF;
+  --live:#3E9B72;
+
+  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --serif:Spectral,Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Consolas,Menlo,monospace;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+
+html[data-lang="es"] .en{display:none}
+html[data-lang="en"] .es{display:none}
+
+a{color:var(--ink)}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:2px}
+
+.wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:#fff;padding:10px 16px;z-index:99}
+.skip:focus{left:8px;top:8px}
+
+.eyebrow{
+  font-family:var(--mono);font-size:11px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--amber-dk);
+  margin:0 0 14px;
+}
+
+/* ---------- header ---------- */
+.masthead{
+  position:sticky;top:0;z-index:50;
+  background:rgba(247,248,249,.92);
+  backdrop-filter:saturate(180%) blur(10px);
+  border-bottom:1px solid var(--hair);
+}
+.masthead-in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:62px}
+.mark{
+  font-family:var(--sans);font-weight:600;font-size:14px;
+  letter-spacing:.2em;color:var(--ink);text-decoration:none;
+  display:inline-flex;align-items:center;gap:9px;
+}
+.mark::before{content:"";width:3px;height:17px;background:var(--amber);border-radius:1px}
+.toggle{display:inline-flex;border:1px solid var(--hair);border-radius:5px;overflow:hidden;background:var(--white)}
+.toggle button{
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.1em;
+  padding:7px 12px;border:0;background:transparent;color:var(--slate);cursor:pointer;
+}
+.toggle button[aria-pressed="true"]{background:var(--ink);color:#fff}
+
+/* ---------- live strip (signature) ---------- */
+.strip{background:var(--ink);color:#C8D2DA}
+.strip-in{
+  display:flex;flex-wrap:wrap;align-items:center;gap:8px 22px;
+  padding:11px 0;
+  font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;
+}
+.strip-item{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--live);flex:none}
+.dot--live{animation:pulse 2.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(62,155,114,.55)}50%{box-shadow:0 0 0 5px rgba(62,155,114,0)}}
+.strip-sep{color:#3E4E5C}
+
+/* ---------- hero ---------- */
+.hero{padding:76px 0 60px}
+.hero h1{
+  font-family:var(--serif);font-weight:600;
+  font-size:clamp(2.05rem,5.6vw,3.5rem);
+  line-height:1.06;letter-spacing:-.02em;
+  margin:0 0 22px;max-width:16ch;
+}
+.hero-sub{font-size:1.09rem;color:var(--slate);margin:0 0 32px;max-width:52ch}
+.hero-sub strong{color:var(--ink);font-weight:600}
+
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-family:var(--sans);font-size:15px;font-weight:600;
+  padding:14px 22px;border-radius:5px;text-decoration:none;
+  border:1px solid transparent;cursor:pointer;transition:transform .12s ease,background .15s ease;
+}
+.btn:active{transform:translateY(1px)}
+.btn--wa{background:var(--ink);color:#fff}
+.btn--wa:hover{background:var(--ink-deep)}
+.btn--ghost{background:transparent;color:var(--ink);border-color:var(--hair);}
+.btn--ghost:hover{border-color:var(--slate)}
+.btn--amber{background:var(--amber);color:#fff;width:100%}
+.btn--amber:hover{background:var(--amber-dk)}
+.btn svg{flex:none}
+
+.proof{
+  display:flex;flex-wrap:wrap;gap:8px 28px;
+  margin-top:40px;padding-top:22px;border-top:1px solid var(--hair);
+  font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--slate);
+}
+
+/* ---------- bands ---------- */
+.band{padding:70px 0;border-top:1px solid var(--hair)}
+.band--white{background:var(--white)}
+.band--dark{background:var(--ink);color:#DCE3E9;border-top:0}
+.band h2{
+  font-family:var(--serif);font-weight:600;
+  font-size:clamp(1.5rem,3.2vw,2.05rem);line-height:1.18;letter-spacing:-.01em;
+  margin:0 0 12px;max-width:22ch;
+}
+.band--dark h2{color:#fff}
+.band-lead{color:var(--slate);margin:0 0 40px;max-width:54ch}
+.band--dark .band-lead{color:#9FADB8}
+
+/* ---------- services ---------- */
+.svc{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:6px;overflow:hidden}
+.svc-item{background:var(--white);padding:28px 26px}
+.svc-tag{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--amber-dk);display:block;margin-bottom:10px}
+.svc-item h3{font-family:var(--sans);font-size:1.02rem;font-weight:600;margin:0 0 8px}
+.svc-item p{margin:0;font-size:.95rem;color:var(--slate);line-height:1.58}
+
+/* ---------- symptoms ---------- */
+.signs{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:14px 32px}
+.signs li{position:relative;padding-left:26px;font-size:1rem;color:var(--ink)}
+.signs li::before{
+  content:"";position:absolute;left:0;top:.62em;
+  width:9px;height:9px;border-radius:2px;
+  background:var(--amber-tint);border:1.5px solid var(--amber);
+}
+.signs-note{margin:34px 0 0;font-family:var(--serif);font-size:1.15rem;color:var(--ink)}
+
+/* ---------- steps ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;counter-reset:s}
+.step{border-top:2px solid var(--amber);padding-top:18px}
+.step-n{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.16em;color:var(--amber-dk);display:block;margin-bottom:9px}
+.step h3{font-family:var(--sans);font-size:1.02rem;font-weight:600;margin:0 0 8px}
+.step p{margin:0;font-size:.95rem;color:var(--slate);line-height:1.58}
+
+/* ---------- about ---------- */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start}
+.about p{margin:0 0 18px;color:var(--slate)}
+.about p:first-child{font-family:var(--serif);font-size:1.2rem;color:var(--ink);line-height:1.5}
+.card-facts{background:var(--white);border:1px solid var(--hair);border-radius:6px;padding:24px 26px}
+.card-facts dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:11px 18px;font-size:.9rem}
+.card-facts dt{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--amber-dk);padding-top:2px}
+.card-facts dd{margin:0;color:var(--ink)}
+
+/* ---------- contact ---------- */
+.contact{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:start}
+.field{margin-bottom:16px}
+.field label{display:block;font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:#9FADB8;margin-bottom:7px}
+.field input,.field textarea{
+  width:100%;font-family:var(--sans);font-size:16px;color:#fff;
+  background:#1D2C38;border:1px solid var(--hair-dk);border-radius:5px;padding:12px 14px;
+}
+.field input:focus,.field textarea:focus{border-color:var(--amber);outline:none}
+.field textarea{resize:vertical;min-height:112px;line-height:1.55}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form-note{font-size:.82rem;color:#8A96A2;margin:12px 0 0}
+.form-status{margin:14px 0 0;font-size:.93rem;min-height:1.4em}
+.form-status[data-state="ok"]{color:#7FD4AC}
+.form-status[data-state="err"]{color:#E8A87C}
+
+.reach{border-left:1px solid var(--hair-dk);padding-left:34px}
+.reach-item{display:block;text-decoration:none;color:#DCE3E9;padding:16px 0;border-bottom:1px solid var(--hair-dk)}
+.reach-item:first-child{padding-top:0}
+.reach-k{display:block;font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:#E0A354;margin-bottom:4px}
+.reach-v{font-size:1.02rem;font-weight:500}
+.reach-item:hover .reach-v{color:#fff;text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- footer ---------- */
+.foot{background:var(--ink-deep);color:#7C8994;padding:26px 0;font-size:.83rem}
+.foot-in{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;align-items:center}
+.foot a{color:#7C8994}
+.foot-call{font-family:var(--mono);font-size:11px;letter-spacing:.1em}
+
+/* ---------- responsive ---------- */
+@media (max-width:820px){
+  .about,.contact{grid-template-columns:1fr;gap:38px}
+  .reach{border-left:0;border-top:1px solid var(--hair-dk);padding-left:0;padding-top:8px}
+  .steps{grid-template-columns:1fr;gap:26px}
+}
+@media (max-width:600px){
+  body{font-size:16px}
+  .hero{padding:52px 0 44px}
+  .band{padding:52px 0}
+  .svc,.signs{grid-template-columns:1fr}
+  .cta-row .btn{flex:1 1 100%}
+  .strip-in{font-size:10px;gap:6px 14px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main"><span class="es">Ir al contenido</span><span class="en">Skip to content</span></a>
+
+<header class="masthead">
+  <div class="wrap masthead-in">
+    <a class="mark" href="#top">MELENDEZTECH</a>
+    <div class="toggle" role="group" aria-label="Idioma / Language">
+      <button type="button" data-set-lang="es" aria-pressed="true">ES</button>
+      <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<div class="strip">
+  <div class="wrap strip-in">
+    <span class="strip-item"><span class="dot dot--live" aria-hidden="true"></span>
+      <span class="es">Disponible para nuevos clientes</span><span class="en">Taking on new clients</span></span>
+    <span class="strip-sep" aria-hidden="true">·</span>
+    <span class="strip-item"><span class="es">San Juan, Puerto Rico</span><span class="en">San Juan, Puerto Rico</span></span>
+    <span class="strip-sep" aria-hidden="true">·</span>
+    <span class="strip-item"><span class="es">Respuesta en menos de 24 h</span><span class="en">Reply within 24 hours</span></span>
+  </div>
+</div>
+
+<main id="main">
+
+  <section class="hero wrap" id="top">
+    <p class="eyebrow"><span class="es">Infraestructura y ciberseguridad · PYMES</span><span class="en">Infrastructure &amp; cybersecurity · Small business</span></p>
+    <h1>
+      <span class="es">El departamento de IT que tu negocio no tiene.</span>
+      <span class="en">The IT department your small business doesn't have.</span>
+    </h1>
+    <p class="hero-sub">
+      <span class="es">Redes, seguridad, Microsoft 365 y respaldos para negocios pequeños en Puerto Rico. <strong>Por proyecto o por mes.</strong> Sin contratos de tres años y sin jerga.</span>
+      <span class="en">Networks, security, Microsoft 365 and backups for small businesses in Puerto Rico. <strong>By project or by month.</strong> No three-year contracts, no jargon.</span>
+    </p>
+    <div class="cta-row">
+      <a class="btn btn--wa" id="wa-hero" href="#" rel="noopener">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.03s.87 2.35.99 2.51c.12.16 1.71 2.61 4.15 3.66.58.25 1.03.4 1.39.51.58.19 1.11.16 1.53.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+        <span class="es">Escríbeme por WhatsApp</span><span class="en">Message me on WhatsApp</span>
+      </a>
+      <a class="btn btn--ghost" href="#contacto"><span class="es">Cuéntame tu situación</span><span class="en">Tell me what's going on</span></a>
+    </div>
+    <div class="proof">
+      <span><span class="es">15+ años en infraestructura</span><span class="en">15+ years in infrastructure</span></span>
+      <span>NIST CSF</span>
+      <span><span class="es">Ambientes regulados</span><span class="en">Regulated environments</span></span>
+    </div>
+  </section>
+
+  <section class="band band--white">
+    <div class="wrap">
+      <p class="eyebrow"><span class="es">Lo que hago</span><span class="en">What I do</span></p>
+      <h2><span class="es">Cuatro cosas, bien hechas.</span><span class="en">Four things, done properly.</span></h2>
+      <p class="band-lead">
+        <span class="es">No vendo equipos ni licencias con sobreprecio. Cobro por el trabajo.</span>
+        <span class="en">I don't resell hardware or marked-up licenses. I charge for the work.</span>
+      </p>
+
+      <div class="svc">
+        <div class="svc-item">
+          <span class="svc-tag"><span class="es">Redes</span><span class="en">Networks</span></span>
+          <h3><span class="es">Que el internet no sea el problema</span><span class="en">Take the network off your list</span></h3>
+          <p><span class="es">Wi-Fi que aguanta todo el local, cableado ordenado, routers y switches configurados como deben. Cuando algo se cae, sabes a quién llamar.</span><span class="en">Wi-Fi that covers the whole place, tidy cabling, routers and switches configured properly. When something drops, you know who to call.</span></p>
+        </div>
+        <div class="svc-item">
+          <span class="svc-tag"><span class="es">Seguridad</span><span class="en">Security</span></span>
+          <h3><span class="es">Cerrar las puertas que están abiertas</span><span class="en">Close the doors that are open</span></h3>
+          <p><span class="es">Control de quién entra a qué, contraseñas que no viven en un papelito, protección real en los equipos. Trabajo alineado al marco NIST CSF.</span><span class="en">Control over who can reach what, passwords that don't live on sticky notes, real protection on the machines. Aligned to the NIST CSF framework.</span></p>
+        </div>
+        <div class="svc-item">
+          <span class="svc-tag">Microsoft 365</span>
+          <h3><span class="es">Correo con tu propio dominio</span><span class="en">Email at your own domain</span></h3>
+          <p><span class="es">Correo profesional, Teams y OneDrive configurados de verdad. Migración desde Gmail o Hotmail sin perder mensajes ni contactos.</span><span class="en">Professional email, Teams and OneDrive set up correctly. Migration off Gmail or Hotmail without losing messages or contacts.</span></p>
+        </div>
+        <div class="svc-item">
+          <span class="svc-tag"><span class="es">Respaldos</span><span class="en">Backups</span></span>
+          <h3><span class="es">Copias que sí se pueden restaurar</span><span class="en">Copies you can actually restore</span></h3>
+          <p><span class="es">Respaldos automáticos y probados, dentro y fuera del local. Un respaldo que nunca se ha restaurado no es un respaldo.</span><span class="en">Automatic backups, tested, on site and off. A backup nobody has ever restored isn't a backup.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <p class="eyebrow"><span class="es">¿Te suena familiar?</span><span class="en">Sound familiar?</span></p>
+      <h2><span class="es">Señales de que ya hace falta.</span><span class="en">Signs you already needed this.</span></h2>
+      <p class="band-lead">
+        <span class="es">Casi todos los negocios que atiendo empezaron con una de estas.</span>
+        <span class="en">Almost every business I work with started with one of these.</span>
+      </p>
+      <ul class="signs">
+        <li><span class="es">Nadie ha verificado si los respaldos funcionan.</span><span class="en">Nobody has checked whether the backups work.</span></li>
+        <li><span class="es">Tu soporte de IT es un familiar que sabe de computadoras.</span><span class="en">Your IT support is a relative who's good with computers.</span></li>
+        <li><span class="es">Todos usan la misma clave del Wi-Fi desde 2019.</span><span class="en">Everyone has used the same Wi-Fi password since 2019.</span></li>
+        <li><span class="es">Un empleado renunció y todavía tiene acceso al correo.</span><span class="en">An employee left and still has access to email.</span></li>
+        <li><span class="es">Cuando se cae el internet, el negocio para.</span><span class="en">When the internet goes down, the business stops.</span></li>
+        <li><span class="es">Compraste un antivirus y nadie sabe si está activo.</span><span class="en">You bought antivirus and nobody knows if it's running.</span></li>
+      </ul>
+      <p class="signs-note">
+        <span class="es">Con una sola que te aplique, ya vale la llamada.</span>
+        <span class="en">If even one of these applies, the call is worth it.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="band band--white">
+    <div class="wrap">
+      <p class="eyebrow"><span class="es">Cómo trabajo</span><span class="en">How it works</span></p>
+      <h2><span class="es">Tres pasos, sin sorpresas.</span><span class="en">Three steps, no surprises.</span></h2>
+      <p class="band-lead">
+        <span class="es">Sabes lo que va a costar antes de que empiece.</span>
+        <span class="en">You know what it costs before I start.</span>
+      </p>
+      <div class="steps">
+        <div class="step">
+          <span class="step-n">01</span>
+          <h3><span class="es">Llamada de 20 minutos</span><span class="en">A 20-minute call</span></h3>
+          <p><span class="es">Gratis. Me cuentas qué está pasando y te digo de una si puedo ayudarte o no.</span><span class="en">Free. You tell me what's happening and I tell you straight whether I can help.</span></p>
+        </div>
+        <div class="step">
+          <span class="step-n">02</span>
+          <h3><span class="es">Revisión del sitio</span><span class="en">On-site review</span></h3>
+          <p><span class="es">Reviso red, equipos, correo y respaldos. Recibes un informe en español claro, con prioridades y costos.</span><span class="en">I go through the network, machines, email and backups. You get a plain-language report with priorities and costs.</span></p>
+        </div>
+        <div class="step">
+          <span class="step-n">03</span>
+          <h3><span class="es">Se arregla y se mantiene</span><span class="en">Fix it, then keep it fixed</span></h3>
+          <p><span class="es">Por proyecto puntual o con mantenimiento mensual. Tú decides cuál te conviene.</span><span class="en">One-off project or monthly maintenance. Your call which one fits.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap about">
+      <div>
+        <p class="eyebrow"><span class="es">Quién soy</span><span class="en">Who I am</span></p>
+        <p><span class="es">Soy Pedro R. Meléndez. Llevo más de 15 años administrando infraestructura y seguridad en ambientes regulados, donde una falla tiene consecuencias reales y hay que documentarlo todo.</span><span class="en">I'm Pedro R. Meléndez. For over 15 years I've run infrastructure and security in regulated environments, where a failure has real consequences and everything has to be documented.</span></p>
+        <p><span class="es">Ese mismo estándar es el que aplico en un negocio de cinco empleados. La diferencia es el tamaño, no el cuidado.</span><span class="en">That's the same standard I bring to a five-person business. The difference is scale, not care.</span></p>
+        <p><span class="es">Trabajo directamente contigo. No hay un centro de llamadas en el medio ni un ticket que nadie contesta.</span><span class="en">You work with me directly. No call center in between, no ticket sitting unanswered.</span></p>
+      </div>
+      <div class="card-facts">
+        <dl>
+          <dt><span class="es">Base</span><span class="en">Based</span></dt>
+          <dd><span class="es">San Juan, Puerto Rico</span><span class="en">San Juan, Puerto Rico</span></dd>
+          <dt><span class="es">Área</span><span class="en">Area</span></dt>
+          <dd><span class="es">Área metro, presencial y remoto</span><span class="en">Metro area, on site and remote</span></dd>
+          <dt><span class="es">Marco</span><span class="en">Framework</span></dt>
+          <dd>NIST Cybersecurity Framework</dd>
+          <dt><span class="es">Sectores</span><span class="en">Sectors</span></dt>
+          <dd><span class="es">Clínicas, oficinas profesionales, comercio, servicios</span><span class="en">Clinics, professional offices, retail, services</span></dd>
+          <dt><span class="es">Idiomas</span><span class="en">Languages</span></dt>
+          <dd><span class="es">Español e inglés</span><span class="en">Spanish and English</span></dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--dark" id="contacto">
+    <div class="wrap contact">
+      <div>
+        <p class="eyebrow" style="color:#E0A354"><span class="es">Contacto</span><span class="en">Contact</span></p>
+        <h2><span class="es">Cuéntame qué está pasando.</span><span class="en">Tell me what's going on.</span></h2>
+        <p class="band-lead"><span class="es">Escribe lo que puedas. Te respondo en menos de 24 horas.</span><span class="en">Write as much or as little as you like. I reply within 24 hours.</span></p>
+
+        <form id="contact-form" action="https://formspree.io/f/xbgjrewg" method="POST" novalidate>
+          <div class="field">
+            <label for="f-name"><span class="es">Nombre</span><span class="en">Name</span></label>
+            <input id="f-name" name="nombre" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="f-biz"><span class="es">Negocio</span><span class="en">Business</span></label>
+            <input id="f-biz" name="negocio" type="text" autocomplete="organization">
+          </div>
+          <div class="field">
+            <label for="f-email"><span class="es">Correo</span><span class="en">Email</span></label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="f-phone"><span class="es">Teléfono</span><span class="en">Phone</span></label>
+            <input id="f-phone" name="telefono" type="tel" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="f-msg"><span class="es">¿Qué está pasando?</span><span class="en">What's going on?</span></label>
+            <textarea id="f-msg" name="mensaje" required></textarea>
+          </div>
+          <div class="hp" aria-hidden="true"><label for="f-hp">No llenar</label><input id="f-hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
+          <input type="hidden" name="_subject" value="Nuevo contacto desde melendeztech.com">
+          <button class="btn btn--amber" type="submit"><span class="es">Enviar mensaje</span><span class="en">Send message</span></button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          <p class="form-note"><span class="es">Tus datos se usan solo para responderte. No comparto ni vendo nada.</span><span class="en">Your details are used only to reply to you. Nothing is shared or sold.</span></p>
+        </form>
+      </div>
+
+      <div class="reach">
+        <a class="reach-item" id="wa-contact" href="#" rel="noopener">
+          <span class="reach-k">WhatsApp</span>
+          <span class="reach-v"><span class="es">Escríbeme ahora</span><span class="en">Message me now</span></span>
+        </a>
+        <a class="reach-item" href="tel:+17876306364">
+          <span class="reach-k"><span class="es">Teléfono</span><span class="en">Phone</span></span>
+          <span class="reach-v">787 630 6364</span>
+        </a>
+        <a class="reach-item" href="mailto:pedro@melendeztech.com">
+          <span class="reach-k"><span class="es">Correo</span><span class="en">Email</span></span>
+          <span class="reach-v">pedro@melendeztech.com</span>
+        </a>
+        <a class="reach-item" href="/card/">
+          <span class="reach-k"><span class="es">Tarjeta</span><span class="en">Card</span></span>
+          <span class="reach-v"><span class="es">Guarda mi contacto</span><span class="en">Save my contact</span></span>
+        </a>
+        <!-- LinkedIn: pega tu URL real donde dice TU-USUARIO y quita los comentarios.
+        <a class="reach-item" href="https://www.linkedin.com/in/TU-USUARIO" target="_blank" rel="noopener noreferrer">
+          <span class="reach-k">LinkedIn</span>
+          <span class="reach-v">Pedro R. Meléndez</span>
+        </a>
+        -->
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span>© <span id="year">2026</span> MelendezTech · Puerto Rico &nbsp;·&nbsp; <a href="/card/"><span class="es">Tarjeta</span><span class="en">Card</span></a></span>
+    <span class="foot-call">WP4TZV · FK68</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  /* ====== EDITA AQUÍ / EDIT HERE ====== */
+  var WHATSAPP_NUMBER = "17876306364"; // solo dígitos, con el 1 al frente
+  var WA_TEXT = {
+    es: "Hola Pedro, vi melendeztech.com y necesito ayuda con el IT de mi negocio.",
+    en: "Hi Pedro, I saw melendeztech.com and I need help with IT for my business."
+  };
+  /* ==================================== */
+
+  var META = {
+    es: {
+      title: "MelendezTech — Soporte de IT para negocios pequeños en Puerto Rico",
+      desc: "Redes, seguridad, Microsoft 365 y respaldos para negocios pequeños en Puerto Rico. Más de 15 años en infraestructura y ciberseguridad."
+    },
+    en: {
+      title: "MelendezTech — IT support for small businesses in Puerto Rico",
+      desc: "Networks, security, Microsoft 365 and backups for small businesses in Puerto Rico. 15+ years in infrastructure and cybersecurity."
+    }
+  };
+
+  var MSG = {
+    es: {
+      sending: "Enviando…",
+      ok: "Mensaje enviado. Te respondo en menos de 24 horas.",
+      err: "No se pudo enviar. Escríbeme por WhatsApp o a pedro@melendeztech.com.",
+      required: "Completa nombre, correo y mensaje.",
+      unset: "El formulario todavía no está conectado. Usa WhatsApp o el correo por ahora."
+    },
+    en: {
+      sending: "Sending…",
+      ok: "Message sent. I'll reply within 24 hours.",
+      err: "That didn't send. Message me on WhatsApp or at pedro@melendeztech.com.",
+      required: "Please fill in name, email and message.",
+      unset: "The form isn't connected yet. Use WhatsApp or email for now."
+    }
+  };
+
+  var root = document.documentElement;
+  var descTag = document.querySelector('meta[name="description"]');
+  var buttons = document.querySelectorAll("[data-set-lang]");
+  var waLinks = [document.getElementById("wa-hero"), document.getElementById("wa-contact")];
+  var lang = "es";
+
+  function store(v) { try { localStorage.setItem("mt-lang", v); } catch (e) {} }
+  function recall() { try { return localStorage.getItem("mt-lang"); } catch (e) { return null; } }
+
+  function setLang(next) {
+    lang = (next === "en") ? "en" : "es";
+    root.setAttribute("lang", lang);
+    root.setAttribute("data-lang", lang);
+    document.title = META[lang].title;
+    if (descTag) descTag.setAttribute("content", META[lang].desc);
+    buttons.forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-set-lang") === lang));
+    });
+    var href = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(WA_TEXT[lang]);
+    waLinks.forEach(function (a) { if (a) a.setAttribute("href", href); });
+  }
+
+  buttons.forEach(function (b) {
+    b.addEventListener("click", function () {
+      var v = b.getAttribute("data-set-lang");
+      setLang(v);
+      store(v);
+    });
+  });
+
+  var saved = recall();
+  if (saved) setLang(saved);
+  else setLang((navigator.language || "es").toLowerCase().indexOf("en") === 0 ? "en" : "es");
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  /* form: posts via fetch, falls back to a normal POST if JS is off */
+  var form = document.getElementById("contact-form");
+  var status = document.getElementById("form-status");
+
+  function say(text, state) {
+    status.textContent = text;
+    status.setAttribute("data-state", state || "");
+  }
+
+  form.addEventListener("submit", function (e) {
+    var t = MSG[lang];
+
+    if (form.action.indexOf("TU_ID_FORMSPREE") !== -1) {
+      e.preventDefault();
+      say(t.unset, "err");
+      return;
+    }
+    if (!form.nombre.value.trim() || !form.email.value.trim() || !form.mensaje.value.trim()) {
+      e.preventDefault();
+      say(t.required, "err");
+      return;
+    }
+
+    e.preventDefault();
+    say(t.sending, "");
+
+    fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { Accept: "application/json" }
+    })
+      .then(function (r) {
+        if (r.ok) { form.reset(); say(MSG[lang].ok, "ok"); }
+        else { say(MSG[lang].err, "err"); }
+      })
+      .catch(function () { say(MSG[lang].err, "err"); });
+  });
+})();
+</script>
+</body>
+</html>
