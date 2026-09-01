@@ -101,8 +101,13 @@ a{color:var(--ink)}
 .card-intro p{color:var(--slate);margin:0;font-size:16px}
 
 .escena{--w:min(560px,100%);width:var(--w);aspect-ratio:3.5/2;perspective:1600px;
-  margin:0 0 26px}
-.carta{position:relative;width:100%;height:100%;font-size:calc(var(--w)/40);
+  container-type:inline-size;margin:0 0 26px}
+/* La tipografía de la tarjeta escala con su ancho. Antes usaba
+   calc(var(--w)/40), pero --w es min(560px,100%) y dentro de font-size el
+   100% significa "100% del font-size del padre" (~17px), así que colapsaba
+   a ~0.4px y la tarjeta salía en blanco. 100cqw = ancho real de la tarjeta. */
+.carta{position:relative;width:100%;height:100%;
+  font-size:min(14px,3.6vw);font-size:calc(100cqw / 40);
   transform-style:preserve-3d;cursor:pointer;
   transition:transform .78s cubic-bezier(.22,.68,.24,1);
   /* Nada de filter/opacity/overflow aquí: cualquiera fuerza transform-style:flat
