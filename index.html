@@ -115,6 +115,43 @@ a{color:var(--ink)}
   line-height:1.06;letter-spacing:-.02em;
   margin:0 0 22px;max-width:16ch;
 }
+@media (min-width:861px){
+  .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(304px,376px);gap:58px;align-items:center}
+  .hero h1{max-width:18ch}
+}
+
+/* hero panel: an illustrative read-out of a business kept current */
+.hero-aside{min-width:0}
+.hpanel{
+  background:var(--white);border:1px solid var(--hair);border-radius:6px;overflow:hidden;
+}
+.hpanel-head{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:12px 15px;border-bottom:1px solid var(--hair);
+  font-family:var(--mono);font-size:10.5px;font-weight:500;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--slate);
+}
+.hpanel-head .status{display:inline-flex;align-items:center;gap:8px}
+.hpanel-head .eg{color:var(--slate-lt)}
+.hpanel-rows{padding:2px 0}
+.hpanel-row{
+  display:flex;align-items:baseline;justify-content:space-between;gap:14px;
+  padding:10px 15px;border-bottom:1px solid var(--hair);
+}
+.hpanel-rows .hpanel-row:last-child{border-bottom:0}
+.hpanel-k{color:var(--ink);font-size:13.5px;line-height:1.42}
+.hpanel-v{
+  flex:none;font-family:var(--mono);font-size:11.5px;letter-spacing:.02em;
+  white-space:nowrap;color:var(--live);
+}
+.hpanel-v[data-flag="fix"]{color:var(--amber-dk)}
+.hpanel-note{
+  margin:13px 3px 0;font-size:.82rem;line-height:1.5;color:var(--slate);max-width:40ch;
+}
+@media (max-width:860px){
+  .hero-aside{margin-top:44px}
+  .hpanel{max-width:420px}
+}
 .hero-sub{font-size:1.09rem;color:var(--slate);margin:0 0 32px;max-width:52ch}
 .hero-sub strong{color:var(--ink);font-weight:600}
 
@@ -295,6 +332,17 @@ html[data-lang="en"] .toggle{--toggle-x:100%}
   html.js.strip-ready .strip-in > *:nth-child(4){transition-delay:.19s}
   html.js.strip-ready .strip-in > *:nth-child(5){transition-delay:.25s}
 
+  /* the hero panel rows continue the same top-to-bottom power-on sweep */
+  html.js .hpanel-row{opacity:0;transform:translateY(4px)}
+  html.js.strip-ready .hpanel-row{
+    opacity:1;transform:none;transition:opacity .3s ease,transform .3s ease;
+  }
+  html.js.strip-ready .hpanel-rows .hpanel-row:nth-child(1){transition-delay:.20s}
+  html.js.strip-ready .hpanel-rows .hpanel-row:nth-child(2){transition-delay:.26s}
+  html.js.strip-ready .hpanel-rows .hpanel-row:nth-child(3){transition-delay:.32s}
+  html.js.strip-ready .hpanel-rows .hpanel-row:nth-child(4){transition-delay:.38s}
+  html.js.strip-ready .hpanel-rows .hpanel-row:nth-child(5){transition-delay:.44s}
+
   html.js .toggle::after{transition:transform .2s cubic-bezier(.4,0,.2,1)}
   .btn--wa svg{transition:transform .16s ease}
   .svc-item{transition:background .16s ease}
@@ -344,27 +392,64 @@ html[data-lang="en"] .toggle{--toggle-x:100%}
 <main id="main">
 
   <section class="hero wrap" id="top">
-    <p class="eyebrow"><span class="es">Infraestructura y ciberseguridad · PYMES</span><span class="en">Infrastructure &amp; cybersecurity · Small business</span></p>
-    <h1>
-      <span class="es">El departamento de IT que tu negocio no tiene.</span>
-      <span class="en">The IT department your small business doesn't have.</span>
-    </h1>
-    <p class="hero-sub">
-      <span class="es">Redes, seguridad, Microsoft 365 y respaldos para negocios pequeños en Puerto Rico. <strong>Por proyecto o por mes.</strong> Sin contratos de tres años y sin jerga.</span>
-      <span class="en">Networks, security, Microsoft 365 and backups for small businesses in Puerto Rico. <strong>By project or by month.</strong> No three-year contracts, no jargon.</span>
-    </p>
-    <div class="cta-row">
-      <a class="btn btn--wa" id="wa-hero" href="#" rel="noopener">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.03s.87 2.35.99 2.51c.12.16 1.71 2.61 4.15 3.66.58.25 1.03.4 1.39.51.58.19 1.11.16 1.53.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
-        <span class="es">Escríbeme por WhatsApp</span><span class="en">Message me on WhatsApp</span>
-      </a>
-      <a class="btn btn--ghost" href="#contacto"><span class="es">Cuéntame tu situación</span><span class="en">Tell me what's going on</span></a>
+    <div class="hero-main">
+      <p class="eyebrow"><span class="es">Infraestructura y ciberseguridad · PYMES</span><span class="en">Infrastructure &amp; cybersecurity · Small business</span></p>
+      <h1>
+        <span class="es">El departamento de IT que tu negocio no tiene.</span>
+        <span class="en">The IT department your small business doesn't have.</span>
+      </h1>
+      <p class="hero-sub">
+        <span class="es">Redes, seguridad, Microsoft 365 y respaldos para negocios pequeños en Puerto Rico. <strong>Por proyecto o por mes.</strong> Sin contratos de tres años y sin jerga.</span>
+        <span class="en">Networks, security, Microsoft 365 and backups for small businesses in Puerto Rico. <strong>By project or by month.</strong> No three-year contracts, no jargon.</span>
+      </p>
+      <div class="cta-row">
+        <a class="btn btn--wa" id="wa-hero" href="#" rel="noopener">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.03s.87 2.35.99 2.51c.12.16 1.71 2.61 4.15 3.66.58.25 1.03.4 1.39.51.58.19 1.11.16 1.53.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+          <span class="es">Escríbeme por WhatsApp</span><span class="en">Message me on WhatsApp</span>
+        </a>
+        <a class="btn btn--ghost" href="#contacto"><span class="es">Cuéntame tu situación</span><span class="en">Tell me what's going on</span></a>
+      </div>
+      <div class="proof">
+        <span><span class="es"><span class="tick" data-to="15">15</span>+ años en infraestructura</span><span class="en"><span class="tick" data-to="15">15</span>+ years in infrastructure</span></span>
+        <span>NIST CSF</span>
+        <span><span class="es">Ambientes regulados</span><span class="en">Regulated environments</span></span>
+      </div>
     </div>
-    <div class="proof">
-      <span><span class="es"><span class="tick" data-to="15">15</span>+ años en infraestructura</span><span class="en"><span class="tick" data-to="15">15</span>+ years in infrastructure</span></span>
-      <span>NIST CSF</span>
-      <span><span class="es">Ambientes regulados</span><span class="en">Regulated environments</span></span>
-    </div>
+
+    <aside class="hero-aside">
+      <div class="hpanel">
+        <div class="hpanel-head">
+          <span class="status"><span class="dot dot--live" aria-hidden="true"></span><span class="es">Monitoreo</span><span class="en">Monitoring</span></span>
+          <span class="eg"><span class="es">ejemplo</span><span class="en">example</span></span>
+        </div>
+        <div class="hpanel-rows">
+          <div class="hpanel-row">
+            <span class="hpanel-k"><span class="es">Respaldo de anoche</span><span class="en">Last night's backup</span></span>
+            <span class="hpanel-v"><span class="es">Listo 03:14</span><span class="en">Done 03:14</span></span>
+          </div>
+          <div class="hpanel-row">
+            <span class="hpanel-k"><span class="es">Restauración de prueba</span><span class="en">Test restore</span></span>
+            <span class="hpanel-v"><span class="es">Hace 6 días</span><span class="en">6 days ago</span></span>
+          </div>
+          <div class="hpanel-row">
+            <span class="hpanel-k"><span class="es">Accesos de exempleados</span><span class="en">Ex-employee access</span></span>
+            <span class="hpanel-v"><span class="es">0 activos</span><span class="en">0 active</span></span>
+          </div>
+          <div class="hpanel-row">
+            <span class="hpanel-k"><span class="es">Antivirus en equipos</span><span class="en">Antivirus on machines</span></span>
+            <span class="hpanel-v" data-flag="fix"><span class="es">1 vencido</span><span class="en">1 outdated</span></span>
+          </div>
+          <div class="hpanel-row">
+            <span class="hpanel-k"><span class="es">Doble factor</span><span class="en">Two-factor</span></span>
+            <span class="hpanel-v">8 / 8</span>
+          </div>
+        </div>
+      </div>
+      <p class="hpanel-note">
+        <span class="es">Un ejemplo. Es lo que reviso en cada negocio que atiendo.</span>
+        <span class="en">An example. It's what I check on every business I take on.</span>
+      </p>
+    </aside>
   </section>
 
   <section class="band band--white">
@@ -635,6 +720,7 @@ html[data-lang="en"] .toggle{--toggle-x:100%}
     requestAnimationFrame(function () {
       requestAnimationFrame(function () { root.classList.add("strip-ready"); });
     });
+    setTimeout(function () { root.classList.add("strip-ready"); }, 90);
   }
 
   /* the "15" in the proof line ticks up when it is first in view */
