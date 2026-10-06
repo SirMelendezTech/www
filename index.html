@@ -238,6 +238,11 @@ a{color:var(--ink)}
 .form-status{margin:14px 0 0;font-size:.93rem;min-height:1.4em}
 .form-status[data-state="ok"]{color:#7FD4AC}
 .form-status[data-state="err"]{color:#E8A87C}
+.field label .req{color:var(--amber);margin-left:.3em;font-size:12px;line-height:1}
+.field input[aria-invalid="true"],.field textarea[aria-invalid="true"]{border-color:#E8A87C}
+.field input[aria-invalid="true"]:focus,.field textarea[aria-invalid="true"]:focus{border-color:#E8A87C}
+.field-error{margin:7px 0 0;font-size:.84rem;color:#E8A87C}
+.form-legend{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#8A96A2;margin:0 0 14px}
 
 .reach{border-left:1px solid var(--hair-dk);padding-left:34px}
 .reach-item{display:block;text-decoration:none;color:#DCE3E9;padding:16px 0;border-bottom:1px solid var(--hair-dk)}
@@ -570,25 +575,29 @@ html[data-lang="en"] .toggle{--toggle-x:100%}
         <p class="band-lead"><span class="es">Escribe lo que puedas. Te respondo en menos de 24 horas.</span><span class="en">Write as much or as little as you like. I reply within 24 hours.</span></p>
 
         <form id="contact-form" action="https://formspree.io/f/xbgjrewg" method="POST" novalidate>
+          <p class="form-legend"><span class="es">* Campos requeridos</span><span class="en">* Required fields</span></p>
           <div class="field">
-            <label for="f-name"><span class="es">Nombre</span><span class="en">Name</span></label>
-            <input id="f-name" name="nombre" type="text" autocomplete="name" required>
+            <label for="f-name"><span class="es">Nombre</span><span class="en">Name</span><span class="req" aria-hidden="true">*</span></label>
+            <input id="f-name" name="nombre" type="text" autocomplete="name" required aria-describedby="e-name">
+            <p class="field-error" id="e-name" hidden></p>
           </div>
           <div class="field">
             <label for="f-biz"><span class="es">Negocio</span><span class="en">Business</span></label>
             <input id="f-biz" name="negocio" type="text" autocomplete="organization">
           </div>
           <div class="field">
-            <label for="f-email"><span class="es">Correo</span><span class="en">Email</span></label>
-            <input id="f-email" name="email" type="email" autocomplete="email" required>
+            <label for="f-email"><span class="es">Correo</span><span class="en">Email</span><span class="req" aria-hidden="true">*</span></label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="e-email">
+            <p class="field-error" id="e-email" hidden></p>
           </div>
           <div class="field">
             <label for="f-phone"><span class="es">Teléfono</span><span class="en">Phone</span></label>
             <input id="f-phone" name="telefono" type="tel" autocomplete="tel">
           </div>
           <div class="field">
-            <label for="f-msg"><span class="es">¿Qué está pasando?</span><span class="en">What's going on?</span></label>
-            <textarea id="f-msg" name="mensaje" required></textarea>
+            <label for="f-msg"><span class="es">¿Qué está pasando?</span><span class="en">What's going on?</span><span class="req" aria-hidden="true">*</span></label>
+            <textarea id="f-msg" name="mensaje" required aria-describedby="e-msg"></textarea>
+            <p class="field-error" id="e-msg" hidden></p>
           </div>
           <div class="hp" aria-hidden="true"><label for="f-hp">No llenar</label><input id="f-hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
           <input type="hidden" name="_subject" value="Nuevo contacto desde melendeztech.com">
@@ -659,14 +668,22 @@ html[data-lang="en"] .toggle{--toggle-x:100%}
       sending: "Enviando…",
       ok: "Mensaje enviado. Te respondo en menos de 24 horas.",
       err: "No se pudo enviar. Escríbeme por WhatsApp o a pedro@melendeztech.com.",
-      required: "Completa nombre, correo y mensaje.",
+      required: "Revisa los campos marcados.",
+      fName: "Escribe tu nombre.",
+      fEmail: "Escribe tu correo.",
+      fEmailBad: "Ese correo no parece válido.",
+      fMsg: "Cuéntame brevemente qué está pasando.",
       unset: "El formulario todavía no está conectado. Usa WhatsApp o el correo por ahora."
     },
     en: {
       sending: "Sending…",
       ok: "Message sent. I'll reply within 24 hours.",
       err: "That didn't send. Message me on WhatsApp or at pedro@melendeztech.com.",
-      required: "Please fill in name, email and message.",
+      required: "Check the fields marked below.",
+      fName: "Enter your name.",
+      fEmail: "Enter your email.",
+      fEmailBad: "That email doesn't look valid.",
+      fMsg: "Tell me briefly what's going on.",
       unset: "The form isn't connected yet. Use WhatsApp or email for now."
     }
   };
@@ -691,6 +708,7 @@ html[data-lang="en"] .toggle{--toggle-x:100%}
     });
     var href = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(WA_TEXT[lang]);
     waLinks.forEach(function (a) { if (a) a.setAttribute("href", href); });
+    repaint();
   }
 
   buttons.forEach(function (b) {
@@ -779,8 +797,11 @@ html[data-lang="en"] .toggle{--toggle-x:100%}
   var status = document.getElementById("form-status");
   var submitBtn = form.querySelector('button[type="submit"]');
 
-  function say(text, state) {
-    status.textContent = text;
+  var statusKey = null;
+
+  function say(key, state) {
+    statusKey = key;
+    status.textContent = MSG[lang][key];
     status.setAttribute("data-state", state || "");
   }
 
@@ -790,22 +811,72 @@ html[data-lang="en"] .toggle{--toggle-x:100%}
     submitBtn.style.opacity = on ? ".65" : "";
   }
 
-  form.addEventListener("submit", function (e) {
-    var t = MSG[lang];
+  var CHECKS = [
+    { el: document.getElementById("f-name"), err: document.getElementById("e-name"),
+      test: function (v) { return v ? null : "fName"; } },
+    { el: document.getElementById("f-email"), err: document.getElementById("e-email"),
+      test: function (v, el) {
+        if (!v) return "fEmail";
+        return el.validity && el.validity.typeMismatch ? "fEmailBad" : null;
+      } },
+    { el: document.getElementById("f-msg"), err: document.getElementById("e-msg"),
+      test: function (v) { return v ? null : "fMsg"; } }
+  ];
 
+  function paint(c) {
+    if (!c.err || !c.el) return;
+    if (c.key) {
+      c.err.textContent = MSG[lang][c.key];
+      c.err.hidden = false;
+      c.el.setAttribute("aria-invalid", "true");
+    } else {
+      c.err.textContent = "";
+      c.err.hidden = true;
+      c.el.removeAttribute("aria-invalid");
+    }
+  }
+
+  function check(c) {
+    if (!c.el) return true;
+    c.key = c.test(c.el.value.trim(), c.el);
+    paint(c);
+    return !c.key;
+  }
+
+  function repaint() {
+    if (!CHECKS) return;
+    CHECKS.forEach(function (c) { if (c.key) paint(c); });
+    if (statusKey) {
+      // keep the status line in the active language
+      status.textContent = MSG[lang][statusKey];
+    }
+  }
+
+  CHECKS.forEach(function (c) {
+    if (!c.el) return;
+    c.el.addEventListener("blur", function () { check(c); });
+    c.el.addEventListener("input", function () { if (c.key) check(c); });
+  });
+
+  form.addEventListener("submit", function (e) {
     if (form.action.indexOf("TU_ID_FORMSPREE") !== -1) {
       e.preventDefault();
-      say(t.unset, "err");
+      say("unset", "err");
       return;
     }
-    if (!form.nombre.value.trim() || !form.email.value.trim() || !form.mensaje.value.trim()) {
+
+    var bad = null;
+    CHECKS.forEach(function (c) { if (!check(c) && !bad) bad = c; });
+    if (bad) {
       e.preventDefault();
-      say(t.required, "err");
+      say("required", "err");
+      if (bad.el.scrollIntoView) bad.el.scrollIntoView({ block: "center", behavior: "smooth" });
+      bad.el.focus({ preventScroll: true });
       return;
     }
 
     e.preventDefault();
-    say(t.sending, "");
+    say("sending", "");
     lockSubmit(true);
 
     fetch(form.action, {
@@ -814,10 +885,14 @@ html[data-lang="en"] .toggle{--toggle-x:100%}
       headers: { Accept: "application/json" }
     })
       .then(function (r) {
-        if (r.ok) { form.reset(); say(MSG[lang].ok, "ok"); }
-        else { say(MSG[lang].err, "err"); }
+        if (r.ok) {
+          form.reset();
+          CHECKS.forEach(function (c) { c.key = null; paint(c); });
+          say("ok", "ok");
+        }
+        else { say("err", "err"); }
       })
-      .catch(function () { say(MSG[lang].err, "err"); })
+      .catch(function () { say("err", "err"); })
       .then(function () { lockSubmit(false); });
   });
 })();
